@@ -1,0 +1,332 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const team = [
+  {
+    name: 'Alex Rivera',
+    role: 'Founder & Lead Developer',
+    bio: 'Full-stack developer with 10+ years building web applications. Passionate about performance and developer experience.',
+    emoji: '👨‍💻',
+  },
+  {
+    name: 'Sam Chen',
+    role: 'UI/UX Designer',
+    bio: 'Designer turned developer. Loves crafting accessible, beautiful interfaces that just work.',
+    emoji: '🎨',
+  },
+  {
+    name: 'Jordan Lee',
+    role: 'Content Strategist',
+    bio: 'Technical writer and educator. Believes great documentation is as important as great code.',
+    emoji: '✍️',
+  },
+];
+
+const values = [
+  { icon: '🎯', title: 'Performance First', body: 'Every page, every component — we optimize relentlessly so users get a great experience.' },
+  { icon: '♿', title: 'Accessibility', body: 'The web should be for everyone. We follow WCAG guidelines and test with real assistive technologies.' },
+  { icon: '📖', title: 'Open Source', body: 'We believe in giving back. All examples are MIT licensed and free to use in your projects.' },
+];
+---
+
+<BaseLayout title="About — Astro Examples" description="Learn about the Astro Examples project and the team behind it.">
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="container">
+      <a href="/" class="breadcrumb">← Back to Home</a>
+      <h1 class="page-title">About <span class="highlight">Astro Examples</span></h1>
+      <p class="page-subtitle">
+        A living showcase of Astro.build patterns — built in public, improved constantly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="section">
+    <div class="container narrow">
+      <h2 class="section-title">Our Mission</h2>
+      <div class="prose">
+        <p>
+          Astro Examples started as a personal learning project and grew into a community resource.
+          Our goal is simple: <strong>give developers ready-made, production-quality examples</strong>
+          they can drop into their own Astro projects.
+        </p>
+        <p>
+          We cover everything from basic layouts and navigation patterns to full-featured pages with
+          animations, accessible forms, and optimized images. Every example is hand-crafted, reviewed
+          for best practices, and kept up to date with the latest Astro releases.
+        </p>
+        <p>
+          Whether you're just getting started with Astro or you're a seasoned developer looking for
+          inspiration, we hope you find something useful here.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title centered">What We Stand For</h2>
+      <div class="values-grid">
+        {values.map((v) => (
+          <div class="value-card">
+            <div class="value-icon">{v.icon}</div>
+            <h3 class="value-title">{v.title}</h3>
+            <p class="value-body">{v.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title centered">Meet the Team</h2>
+      <div class="team-grid">
+        {team.map((member) => (
+          <div class="team-card">
+            <div class="avatar">{member.emoji}</div>
+            <h3 class="member-name">{member.name}</h3>
+            <p class="member-role">{member.role}</p>
+            <p class="member-bio">{member.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2 class="section-title centered">Get in Touch</h2>
+      <p class="centered-text">Have a suggestion, found a bug, or want to contribute? We'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="https://github.com/withastro/astro" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-icon">⭐</span> GitHub
+        </a>
+        <a href="https://astro.build/chat" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-icon">💬</span> Discord
+        </a>
+        <a href="https://twitter.com/astrodotbuild" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-icon">🐦</span> Twitter
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 4rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--color-border);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 70%);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .narrow {
+    max-width: 720px;
+  }
+
+  .breadcrumb {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb:hover {
+    color: var(--color-primary-light);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+  }
+
+  .highlight {
+    color: var(--color-primary-light);
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 540px;
+  }
+
+  .section {
+    padding: 4.5rem 1.5rem;
+  }
+
+  .section-alt {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .centered {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .centered-text {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .prose p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 1.025rem;
+  }
+
+  .prose strong {
+    color: var(--color-text);
+  }
+
+  /* Values */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .value-card {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .value-card:hover {
+    border-color: rgba(124,58,237,0.5);
+  }
+
+  .value-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .value-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+  }
+
+  .value-body {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  /* Team */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .team-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .team-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
+  }
+
+  .avatar {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    background: var(--color-surface-2);
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    line-height: 72px;
+    text-align: center;
+  }
+
+  .member-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .member-role {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+  }
+
+  .member-bio {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Contact */
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--color-primary-light);
+    color: var(--color-primary-light);
+    transform: translateY(-1px);
+  }
+
+  .contact-icon {
+    font-size: 1rem;
+  }
+</style>
