@@ -1,0 +1,394 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = [
+  {
+    slug: 'getting-started-with-astro',
+    title: 'Getting Started with Astro 6',
+    excerpt: 'Everything you need to know to spin up your first Astro project, from installation to your first deployed site.',
+    date: 'March 15, 2024',
+    readTime: '5 min read',
+    tags: ['Astro', 'Beginner', 'Tutorial'],
+    emoji: '🚀',
+  },
+  {
+    slug: 'astro-islands-deep-dive',
+    title: 'Astro Islands: A Deep Dive',
+    excerpt: 'Understand how Astro\'s island architecture works under the hood and how to use client directives effectively.',
+    date: 'February 28, 2024',
+    readTime: '8 min read',
+    tags: ['Astro', 'Architecture', 'Performance'],
+    emoji: '🏝️',
+  },
+  {
+    slug: 'content-collections-guide',
+    title: 'Mastering Content Collections',
+    excerpt: 'Content Collections give you type-safe Markdown with schema validation. Here\'s how to use them in a real project.',
+    date: 'February 10, 2024',
+    readTime: '6 min read',
+    tags: ['Astro', 'Content', 'MDX'],
+    emoji: '📚',
+  },
+  {
+    slug: 'deploy-astro-vercel',
+    title: 'Deploying Astro to Vercel in 5 Minutes',
+    excerpt: 'Step-by-step guide to deploying an Astro site on Vercel with automatic preview deployments and edge functions.',
+    date: 'January 22, 2024',
+    readTime: '4 min read',
+    tags: ['Astro', 'Deployment', 'Vercel'],
+    emoji: '▲',
+  },
+  {
+    slug: 'styling-astro-components',
+    title: 'Modern Styling Strategies in Astro',
+    excerpt: 'Scoped styles, CSS Modules, Tailwind, and CSS custom properties — which approach is right for your project?',
+    date: 'January 8, 2024',
+    readTime: '7 min read',
+    tags: ['Astro', 'CSS', 'Styling'],
+    emoji: '🎨',
+  },
+  {
+    slug: 'image-optimization-astro',
+    title: 'Image Optimization with Astro',
+    excerpt: 'Use Astro\'s built-in Image component and Sharp integration to deliver perfectly sized, converted images automatically.',
+    date: 'December 19, 2023',
+    readTime: '5 min read',
+    tags: ['Astro', 'Performance', 'Images'],
+    emoji: '🖼️',
+  },
+];
+
+const allTags = [...new Set(posts.flatMap((p) => p.tags))].sort();
+---
+
+<BaseLayout title="Blog — Astro Examples" description="Tutorials, guides, and deep-dives on building fast websites with Astro.build.">
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="container">
+      <a href="/" class="breadcrumb">← Back to Home</a>
+      <h1 class="page-title">The <span class="highlight">Blog</span></h1>
+      <p class="page-subtitle">
+        Tutorials, guides, and in-depth explorations of Astro.build patterns and best practices.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- Tag filter (display only) -->
+      <div class="tag-bar">
+        <span class="tag-label">Topics:</span>
+        {allTags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+
+      <!-- Posts grid -->
+      <div class="posts-grid">
+        {posts.map((post, i) => (
+          <article class={`post-card ${i === 0 ? 'post-card--featured' : ''}`}>
+            <div class="post-emoji">{post.emoji}</div>
+            <div class="post-meta">
+              <time class="post-date">{post.date}</time>
+              <span class="post-dot">·</span>
+              <span class="post-read-time">{post.readTime}</span>
+            </div>
+            <h2 class="post-title">{post.title}</h2>
+            <p class="post-excerpt">{post.excerpt}</p>
+            <div class="post-footer">
+              <div class="post-tags">
+                {post.tags.map((tag) => (
+                  <span class="post-tag">{tag}</span>
+                ))}
+              </div>
+              <a href={`/blog/${post.slug}`} class="read-more">Read more →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-icon">📬</div>
+        <h2 class="newsletter-title">Stay in the loop</h2>
+        <p class="newsletter-body">New articles every week on Astro, web performance, and modern frontend development.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" class="newsletter-input" placeholder="you@example.com" aria-label="Email address" />
+          <button type="submit" class="btn-subscribe">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 4rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--color-border);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(6,182,212,0.1) 0%, transparent 70%);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb:hover {
+    color: var(--color-primary-light);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+  }
+
+  .highlight {
+    color: var(--color-accent);
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 540px;
+  }
+
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  /* Tag bar */
+  .tag-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag-label {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .tag {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .tag:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* Posts grid */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .post-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(6,182,212,0.12);
+  }
+
+  .post-card--featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background: linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(124,58,237,0.08) 100%);
+    border-color: rgba(6,182,212,0.25);
+  }
+
+  .post-emoji {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .post-card--featured .post-emoji {
+    font-size: 2.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+  }
+
+  .post-dot {
+    opacity: 0.5;
+  }
+
+  .post-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1.35;
+    flex: 1 1 100%;
+  }
+
+  .post-card--featured .post-title {
+    font-size: 1.5rem;
+  }
+
+  .post-excerpt {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .post-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .post-tag {
+    background: rgba(124,58,237,0.12);
+    border: 1px solid rgba(124,58,237,0.25);
+    color: var(--color-primary-light);
+    padding: 0.18rem 0.55rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  .read-more {
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+
+  .read-more:hover {
+    opacity: 0.75;
+  }
+
+  /* Newsletter */
+  .newsletter-section {
+    padding: 4rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .newsletter-inner {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .newsletter-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-white);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .newsletter-body {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.75rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    min-width: 200px;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-input:focus {
+    border-color: var(--color-accent);
+  }
+
+  .newsletter-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .btn-subscribe {
+    background: var(--color-accent);
+    color: #000;
+    font-weight: 700;
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-subscribe:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+</style>

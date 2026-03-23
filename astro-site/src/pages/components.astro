@@ -1,0 +1,623 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const buttons = [
+  { label: 'Primary', variant: 'primary' },
+  { label: 'Secondary', variant: 'secondary' },
+  { label: 'Ghost', variant: 'ghost' },
+  { label: 'Danger', variant: 'danger' },
+  { label: 'Success', variant: 'success' },
+];
+
+const badges = [
+  { label: 'New', color: 'purple' },
+  { label: 'Beta', color: 'cyan' },
+  { label: 'Deprecated', color: 'red' },
+  { label: 'Stable', color: 'green' },
+  { label: 'Draft', color: 'gray' },
+];
+
+const alerts = [
+  { type: 'info', icon: 'ℹ️', title: 'Heads up!', body: 'This is an informational alert with some useful context.' },
+  { type: 'success', icon: '✅', title: 'Success!', body: 'Your changes have been saved and deployed successfully.' },
+  { type: 'warning', icon: '⚠️', title: 'Warning', body: 'You are about to perform an irreversible action. Proceed carefully.' },
+  { type: 'error', icon: '🚨', title: 'Error', body: 'Something went wrong. Please try again or contact support.' },
+];
+
+const cards = [
+  { emoji: '🔥', title: 'Trending', body: 'The most popular Astro patterns used by thousands of developers worldwide.' },
+  { emoji: '🧪', title: 'Experimental', body: 'Cutting-edge techniques and newly landed Astro features ready to try.' },
+  { emoji: '📦', title: 'Stable', body: 'Battle-tested components you can confidently ship to production today.' },
+];
+---
+
+<BaseLayout title="Components — Astro Examples" description="A showcase of reusable UI components built with pure Astro and CSS.">
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="container">
+      <a href="/" class="breadcrumb">← Back to Home</a>
+      <h1 class="page-title">Component <span class="highlight">Showcase</span></h1>
+      <p class="page-subtitle">
+        Reusable, accessible UI components built with pure Astro and vanilla CSS — no frameworks required.
+      </p>
+    </div>
+  </section>
+
+  <div class="page-body">
+    <div class="container">
+      <div class="layout">
+
+        <!-- Sidebar TOC -->
+        <nav class="sidebar">
+          <p class="sidebar-label">On this page</p>
+          <ul class="sidebar-links">
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#badges">Badges</a></li>
+            <li><a href="#alerts">Alerts</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#typography">Typography</a></li>
+            <li><a href="#form">Form Elements</a></li>
+            <li><a href="#code">Code Block</a></li>
+          </ul>
+        </nav>
+
+        <!-- Main content -->
+        <main class="content">
+
+          <!-- Buttons -->
+          <section class="comp-section" id="buttons">
+            <h2 class="comp-title">Buttons</h2>
+            <p class="comp-desc">Five button variants covering all primary use cases.</p>
+            <div class="comp-demo">
+              {buttons.map((b) => (
+                <button class={`demo-btn demo-btn--${b.variant}`}>{b.label}</button>
+              ))}
+            </div>
+            <div class="comp-demo comp-demo--sm">
+              <button class="demo-btn demo-btn--primary demo-btn--sm">Small</button>
+              <button class="demo-btn demo-btn--primary">Default</button>
+              <button class="demo-btn demo-btn--primary demo-btn--lg">Large</button>
+            </div>
+          </section>
+
+          <!-- Badges -->
+          <section class="comp-section" id="badges">
+            <h2 class="comp-title">Badges</h2>
+            <p class="comp-desc">Compact status indicators for labels, tags, and metadata.</p>
+            <div class="comp-demo">
+              {badges.map((b) => (
+                <span class={`demo-badge demo-badge--${b.color}`}>{b.label}</span>
+              ))}
+            </div>
+          </section>
+
+          <!-- Alerts -->
+          <section class="comp-section" id="alerts">
+            <h2 class="comp-title">Alerts</h2>
+            <p class="comp-desc">Contextual feedback messages for user actions and system states.</p>
+            <div class="alerts-stack">
+              {alerts.map((a) => (
+                <div class={`demo-alert demo-alert--${a.type}`} role="alert">
+                  <span class="alert-icon">{a.icon}</span>
+                  <div>
+                    <strong class="alert-title">{a.title}</strong>
+                    <p class="alert-body">{a.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- Cards -->
+          <section class="comp-section" id="cards">
+            <h2 class="comp-title">Cards</h2>
+            <p class="comp-desc">Versatile card components for displaying grouped content.</p>
+            <div class="cards-grid">
+              {cards.map((c) => (
+                <div class="demo-card">
+                  <div class="demo-card-emoji">{c.emoji}</div>
+                  <h3 class="demo-card-title">{c.title}</h3>
+                  <p class="demo-card-body">{c.body}</p>
+                  <button class="demo-btn demo-btn--ghost demo-btn--sm" style="margin-top:auto;">Learn more →</button>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <!-- Typography -->
+          <section class="comp-section" id="typography">
+            <h2 class="comp-title">Typography</h2>
+            <p class="comp-desc">Heading and body text scale with sensible defaults.</p>
+            <div class="comp-demo comp-demo--col">
+              <h1 class="typo-h1">Heading 1</h1>
+              <h2 class="typo-h2">Heading 2</h2>
+              <h3 class="typo-h3">Heading 3</h3>
+              <h4 class="typo-h4">Heading 4</h4>
+              <p class="typo-body">Body text — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="typo-small">Small text — Supporting copy, captions, and meta information.</p>
+            </div>
+          </section>
+
+          <!-- Form -->
+          <section class="comp-section" id="form">
+            <h2 class="comp-title">Form Elements</h2>
+            <p class="comp-desc">Accessible, styled form inputs, selects, and textareas.</p>
+            <form class="demo-form" onsubmit="return false;">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="fname">First Name</label>
+                  <input class="form-input" type="text" id="fname" placeholder="Alex" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lname">Last Name</label>
+                  <input class="form-input" type="text" id="lname" placeholder="Rivera" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" placeholder="you@example.com" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="framework">Favourite Framework</label>
+                <select class="form-select" id="framework">
+                  <option>Astro</option>
+                  <option>Next.js</option>
+                  <option>Nuxt</option>
+                  <option>SvelteKit</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">Message</label>
+                <textarea class="form-textarea" id="message" rows="4" placeholder="Write your message..."></textarea>
+              </div>
+              <div class="form-group form-group--check">
+                <input type="checkbox" id="agree" class="form-check" />
+                <label for="agree" class="form-check-label">I agree to the terms and conditions</label>
+              </div>
+              <button type="submit" class="demo-btn demo-btn--primary">Submit Form</button>
+            </form>
+          </section>
+
+          <!-- Code -->
+          <section class="comp-section" id="code">
+            <h2 class="comp-title">Code Block</h2>
+            <p class="comp-desc">Styled <code class="inline-code">pre</code> element for displaying code snippets.</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">astro</span>
+                <div class="code-dots">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <pre class="code-pre"><code>---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const greeting = 'Hello, Astro!';
+---
+
+&lt;BaseLayout title="My Page"&gt;
+  &lt;h1&gt;{"{greeting}"}&lt;/h1&gt;
+&lt;/BaseLayout&gt;</code></pre>
+            </div>
+          </section>
+
+        </main>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 4rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--color-border);
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 70%);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb:hover {
+    color: var(--color-primary-light);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+  }
+
+  .highlight {
+    color: var(--color-primary-light);
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 540px;
+  }
+
+  .page-body {
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* Layout */
+  .layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      display: none;
+    }
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+  }
+
+  .sidebar-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .sidebar-links a {
+    display: block;
+    padding: 0.35rem 0.75rem;
+    border-left: 2px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .sidebar-links a:hover {
+    color: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+  }
+
+  /* Component sections */
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .comp-section {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .comp-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-white);
+    margin-bottom: 0.4rem;
+  }
+
+  .comp-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .comp-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--color-surface-2);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+
+  .comp-demo--sm {
+    margin-bottom: 0;
+  }
+
+  .comp-demo--col {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Buttons */
+  .demo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+
+  .demo-btn--sm { padding: 0.4rem 0.9rem; font-size: 0.8rem; }
+  .demo-btn--lg { padding: 0.8rem 1.75rem; font-size: 1rem; }
+
+  .demo-btn--primary { background: #7c3aed; color: #fff; }
+  .demo-btn--primary:hover { background: #6d28d9; }
+  .demo-btn--secondary { background: var(--color-surface-2); color: var(--color-text); border: 1px solid var(--color-border); }
+  .demo-btn--secondary:hover { border-color: var(--color-primary-light); }
+  .demo-btn--ghost { background: transparent; color: var(--color-text-muted); border: 1px solid var(--color-border); }
+  .demo-btn--ghost:hover { background: var(--color-surface-2); color: var(--color-text); }
+  .demo-btn--danger { background: #dc2626; color: #fff; }
+  .demo-btn--danger:hover { background: #b91c1c; }
+  .demo-btn--success { background: #16a34a; color: #fff; }
+  .demo-btn--success:hover { background: #15803d; }
+
+  /* Badges */
+  .demo-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .demo-badge--purple { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+  .demo-badge--cyan { background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3); }
+  .demo-badge--red { background: rgba(220,38,38,0.15); color: #f87171; border: 1px solid rgba(220,38,38,0.3); }
+  .demo-badge--green { background: rgba(22,163,74,0.15); color: #4ade80; border: 1px solid rgba(22,163,74,0.3); }
+  .demo-badge--gray { background: rgba(148,163,184,0.12); color: #94a3b8; border: 1px solid rgba(148,163,184,0.2); }
+
+  /* Alerts */
+  .alerts-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .demo-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    border-left: 4px solid;
+  }
+
+  .demo-alert--info { background: rgba(59,130,246,0.1); border-color: #3b82f6; }
+  .demo-alert--success { background: rgba(22,163,74,0.1); border-color: #16a34a; }
+  .demo-alert--warning { background: rgba(234,179,8,0.1); border-color: #eab308; }
+  .demo-alert--error { background: rgba(220,38,38,0.1); border-color: #dc2626; }
+
+  .alert-icon { font-size: 1.1rem; line-height: 1.4; flex-shrink: 0; }
+
+  .alert-title {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 0.2rem;
+  }
+
+  .alert-body {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  /* Cards */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .demo-card {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 200px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .demo-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .demo-card-emoji { font-size: 1.75rem; }
+  .demo-card-title { font-size: 1rem; font-weight: 700; color: var(--color-white); }
+  .demo-card-body { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6; flex: 1; }
+
+  /* Typography */
+  .typo-h1 { font-size: 2rem; font-weight: 800; color: var(--color-white); letter-spacing: -0.03em; }
+  .typo-h2 { font-size: 1.6rem; font-weight: 700; color: var(--color-white); letter-spacing: -0.02em; }
+  .typo-h3 { font-size: 1.3rem; font-weight: 700; color: var(--color-white); }
+  .typo-h4 { font-size: 1.05rem; font-weight: 700; color: var(--color-white); }
+  .typo-body { font-size: 1rem; color: var(--color-text-muted); line-height: 1.75; max-width: 600px; }
+  .typo-small { font-size: 0.85rem; color: var(--color-text-muted); }
+
+  /* Form */
+  .demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 600px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 500px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group--check {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.6rem 0.85rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--color-primary-light);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .form-select option {
+    background: var(--color-surface-2);
+  }
+
+  .form-textarea {
+    resize: vertical;
+  }
+
+  .form-check {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  .form-check-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  /* Code block */
+  .code-block {
+    background: #0d0f18;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .code-lang {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .code-dots {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .code-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-border);
+  }
+
+  .code-dots span:nth-child(1) { background: #f87171; }
+  .code-dots span:nth-child(2) { background: #fbbf24; }
+  .code-dots span:nth-child(3) { background: #4ade80; }
+
+  .code-pre {
+    padding: 1.25rem 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 0;
+  }
+
+  .code-pre code {
+    font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #c4b5fd;
+    white-space: pre;
+  }
+
+  .inline-code {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-primary-light);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.875em;
+  }
+</style>
